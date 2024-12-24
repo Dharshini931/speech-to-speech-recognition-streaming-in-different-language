@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Translation Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <section id="header">
+        <h1 class="title">Translate Your Videos</h1>
+    </section>
+    <section id="main-content">
+        <div class="wrapper">
+            <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+                <fieldset>
+                    <legend>Upload and Translate</legend>
+                    <div class="form-group">
+                        <label for="file-input">Choose a Video File:</label>
+                        <input type="file" id="file-input" name="video" accept="video/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-language">Select Translation Language:</label>
+                        <select id="target-language" name="language" required>
+                            <option value="" hidden>Select a language</option>
+                            {% for lang in languages %}
+                            <option value="{{ lang }}">{{ lang }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Start Translation</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    <footer id="site-footer">
+        <small>&copy;Video Translator</small>
+    </footer>
+</body>
+</html>
